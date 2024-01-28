@@ -23,6 +23,7 @@ nav ul{
 
 .gameContainer{
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     margin-top: 20px;
 }
@@ -39,4 +40,27 @@ nav ul{
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+}
+
+.box:hover{
+    background-color: rgba(75, 74, 73, 0.457);
+}
+
+.br-t{
+    border-top: 0px;;
+}
+.br-l{
+    border-left: 0px;
+}
+.br-r{
+    border-right: 0px;
+}
+.br-b{
+    border-bottom: 0px;
+}
+
+#reset{
+    padding: 4px;
+    font-size: 15px;
 }
