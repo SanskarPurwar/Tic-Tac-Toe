@@ -9,20 +9,22 @@ let isGameOver = false;
 const isWin = function (){
     const block = document.querySelectorAll('.boxtext')
     wins = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6],
+        [0, 1, 2, 3, 4, 0],
+        [3, 4, 5, 3, 12, 0],
+        [6, 7, 8, 3, 19.5, 0],
+        [0, 3, 6, -5, 11.4, 90],
+        [1, 4, 7, 3, 11.4, 90],
+        [2, 5, 8, 10.5, 11.4, 90],
+        [0, 4, 8, 3, 12, 45],
+        [2, 4, 6, 3, 12, 135],
     ]
     wins.forEach( (e)=>{
         if( block[e[0]].innerHTML !== "" && (block[e[0]].innerHTML === block[e[1]].innerHTML) && (block[e[0]].innerHTML === block[e[2]].innerHTML) ){
             isGameOver = true;
             document.getElementsByClassName("info")[0].innerText  = "Winner is " + block[e[0]].innerHTML;
-            document.getElementById('reset').style.cssText = "background-color : red ; color: white; border: 2px solid white;"
+            document.querySelector('img').style.display = 'block'
+            document.querySelector(".line").style.transform = `translate(${e[3]}vw, ${e[4]}vw) rotate(${e[5]}deg)`
+            document.querySelector(".line").style.width = "18vw";
         }
     } )
 }
@@ -38,7 +40,7 @@ Array.from(boxes).forEach( (element) =>{
         let boxText = element.querySelector('.boxtext');   
         if(boxText.innerHTML === ''){
             boxText.innerHTML = turn;
-            console.log(element)
+            // console.log(element)
             turn = changeturn();
             ting.play();
             isWin();
@@ -47,4 +49,17 @@ Array.from(boxes).forEach( (element) =>{
             }
         }
     })
+})
+
+const reset = document.getElementById('reset');
+reset.addEventListener('click' , (e)=>{
+    document.querySelector(".line").style.width = "0vw";
+    const block = document.querySelectorAll('.boxtext');
+    block.forEach( (item) =>{
+        item.innerHTML = "";
+    })
+    document.querySelector('img').style.display = 'none'
+    turn = "X"
+    isGameOver = false;
+    document.getElementsByClassName("info")[0].innerText  = "Turn for " + turn
 })
