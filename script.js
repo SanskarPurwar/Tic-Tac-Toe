@@ -29,7 +29,7 @@ const isWin = function (){
     } )
 }
 
-// music.play();
+music.play();
 const changeturn = ()=>{
     return turn==="X"?"0":"X";
 }
@@ -40,7 +40,6 @@ Array.from(boxes).forEach( (element) =>{
         let boxText = element.querySelector('.boxtext');   
         if(boxText.innerHTML === ''){
             boxText.innerHTML = turn;
-            // console.log(element)
             turn = changeturn();
             ting.play();
             isWin();
